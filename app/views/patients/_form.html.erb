@@ -1,0 +1,13 @@
+<%= form_for([@product, @product.patients.build]) do |f| %>
+  <p>
+    <%= f.label :role %><br>
+    <%= f.text_field :role %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

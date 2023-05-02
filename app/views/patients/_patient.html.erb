@@ -1,0 +1,16 @@
+<p>
+  <strong>role:</strong>
+  <%= patient.role %>
+</p>
+
+<p>
+  <strong>description:</strong>
+  <%= patient.description %>
+</p>
+<p>
+  
+  <%= link_to 'destroy patient', [patient.product, patient],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+
+</p>

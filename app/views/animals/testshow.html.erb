@@ -1,0 +1,25 @@
+<p>
+  <strong>Name:</strong>
+  <%= @animal.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @animal.email %>
+</p>
+<p>
+  <strong>Contact:</strong>
+  <%= @animal.contact %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%= @animal.gender %>
+</p>
+<p>
+  <strong>Role:</strong>
+  <%= @animal.Role %>
+</p>
+<%= link_to 'Edit', edit_animal_path(@animal) %> |
+<%= link_to 'Back', animals_path %>
+<%= link_to 'Destroy', animals_path(@animal), method: :delete,
+          data: { confirm: 'Are you sure?' } %>

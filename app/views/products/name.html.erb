@@ -1,0 +1,36 @@
+
+<%= form_for @new do |f| %>
+
+  
+  <p>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :gender %><br>
+    <%= f.text_field :gender %>
+  </p>
+  <p>
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :peraddress %><br>
+    <%= f.text_field :peraddress %>
+  </p>
+  <p>
+    <%= f.label :contactNo %><br>
+    <%= f.text_field :contactNo %>
+  </p>
+
+  <p>
+      <%= f.submit %>
+    </p>
+
+  <% end %>
