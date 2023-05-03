@@ -5,11 +5,12 @@ class AnimalsController < ApplicationController
   def testshow
     @animal = Animal.find(params[:id])
   end
-  def testfor
-    @animal=Animal.new
-  end
+
   def new
     @animal = Animal.new
+end
+def new_animal
+  @animal=Animal.new
 end
 def testupdate
   @animal = Animal.find(params[:id])
@@ -23,7 +24,7 @@ end
   def testedit
     @animal = Animal.find(params[:id])
 end
-  def testcreate
+  def create_animal
     @animal = Animal.new(params.require(:animal).permit(:name, :email, :contact, :gender, :Role))
 
   if @animal.save

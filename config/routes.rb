@@ -13,9 +13,9 @@ Rails.application.routes.draw do
 #end
 
 get '/animals', to: 'animals#index', as: 'animals'
-  get '/animals/testfor', to: 'animals#testfor', as: 'testfor_animal'
+  get '/animals/new_animal', to: 'animals#new_animal', as: 'new_animal'
   get '/animals/:id', to: 'animals#testshow', as: 'animal'
-  post '/animals', to: 'animals#testcreate', as: 'testcreate_animal'
+  post '/animals', to: 'animals#create_animal', as: 'create_animal_animal'
   get '/animals/:id/testedit', to: 'animals#testedit', as: 'testedit_animal'
   patch '/animals/:id', to: 'animals#testupdate', as: 'testupdate_animal'
   delete '/animals/:id', to: 'animals#testdestroy', as: 'testdestroy_animal'
