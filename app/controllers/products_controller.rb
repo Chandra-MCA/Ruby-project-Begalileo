@@ -6,15 +6,15 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
 
-  #   if params[:role].present?
-  #     @products = Product.joins(:patient).where(patients: { role: params[:role] })
-  #   else
-  #     @products = Product.all
-  #   end
-  # end
-
-
+    if params[:role].present?
+      @products = Product.joins(:patient).where(patients: { role: params[:role] })
+    else
+      @products = Product.all
+    end
   end
+
+
+
   def delete_products
   Product.destroy(params[:product_ids])
   redirect_to products_path, notice: "Selected users have been deleted"
@@ -26,9 +26,7 @@ end
 
 
 
-def testfor
-  @product=Product.new
-end
+
 
 
 
@@ -47,7 +45,7 @@ end
      if @product.save
     redirect_to product_path(@product.id)
   else
-    render 'testfor'
+    render 'new'
   end
 
      #render plain: params[:student1].inspect

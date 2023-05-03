@@ -1,19 +1,19 @@
 <th>ROLE</th>
 <table>
-  <!-- <tr>
-    <%= form_tag products_path, method: :get do %>
+  <tr>
+    <%= form_tag products_path(@product), method: :get do %>
       <%= label_tag :role, "Select Role" %>
       <%= select_tag :role, options_for_select(Patient.select(:role).distinct.order(:role).pluck(:role), params[:role]), include_blank: true %>
       <%= submit_tag "Filter" %>
       <% end %>
 
-      </tr>  -->
+      </tr>
 
 
 
 
   <tr>
-    <%= form_tag(delete_products_path, method: :delete) do %>
+    <%= form_tag(delete_products_path(@product), method: :delete) do %>
   </tr>
   <%= link_to 'New article', new_product_path %>
 <% if @product.present? %>
