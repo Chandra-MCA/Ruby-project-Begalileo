@@ -1,7 +1,24 @@
 class AnimalsController < ApplicationController
+  # def index
   def index
+  if params[:search].present?
+    @animals = Animal.where("Role LIKE ?", "%#{params[:search]}%")
+  else
     @animals = Animal.all
   end
+end
+
+    # if params[:role].present?
+    #     @animals = Animal.includes(:animals).where(animal: { role: params[:role] })
+    #   else
+      #   @animals = Animal.all
+      # end
+
+
+    #   @animals = Animal.all
+    # end
+
+  # end
   def testshow
     @animal = Animal.find(params[:id])
   end
@@ -33,6 +50,10 @@ else
   render 'testfor'
 end
 end
+def search
+    @animals = Animal.where("title LIKE ?", "%#{params[:q]}%")
+  end
+
 def testdestroy
   @animal = Animal.find(params[:id])
   @animal.testdestroy

@@ -3,15 +3,28 @@ class ProductsController < ApplicationController
   http_basic_authenticate_with name: "Chandra", password: "secret", except: [:index, :show]
 
 
-  def index
-    @products = Product.all
+   def index
 
-    if params[:role].present?
-      @products = Product.joins(:patient).where(patients: { role: params[:role] })
-    else
-      @products = Product.all
-    end
+  @products = Product.all
+   @products = @products.includes(:patients).where(patients: { role: params[:role] }) if params[:role].present?
+
+
+
+  if params[:search].present?
+    search_term = "%#{params[:search]}%"
+    @productss = Product.where("first_name LIKE ? OR gender LIKE ? OR contactNo LIKE ?", search_term, search_term, search_term)
+  else
+    @productss = Product.all
   end
+end
+  #   @products = Product.all
+  #
+  #   if params[:role].present?
+  #     @products = Product.includes(:patient).where(patients: { role: params[:role] })
+  #   else
+  #     @products = Product.all
+  #   end
+  # end
 
 
 
@@ -60,6 +73,9 @@ end
     render 'edit'
   end
 end
+def search
+    @product = Product.where("title LIKE ?", "%#{params[:q]}%")
+  end
 def destroy
   @product = Product.find(params[:id])
   @product.destroy

@@ -19,6 +19,7 @@ get '/animals', to: 'animals#index', as: 'animals'
   get '/animals/:id/testedit', to: 'animals#testedit', as: 'testedit_animal'
   patch '/animals/:id', to: 'animals#testupdate', as: 'testupdate_animal'
   delete '/animals/:id', to: 'animals#testdestroy', as: 'testdestroy_animal'
+  get 'animals/search', to: 'animals#search', as: 'search_animals'
 resources :animals
 
   # The priority is based upon order of creation: first created -> highest priority.
