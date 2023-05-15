@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  
+
  get 'products/name'
   #end
 # get 'products/testfor'
@@ -31,6 +34,14 @@ resources :animals
   # You can have the root of your site routed with "root"
   root 'products#index'
 
+
+
+  resources :teachers do
+    resources :students
+  end
+
+    delete 'delete_teachers', to: 'teachers#delete_teachers', as: :delete_teachers
+ end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -83,4 +94,4 @@ resources :animals
 
 
 
-end
+#end

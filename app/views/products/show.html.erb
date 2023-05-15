@@ -25,10 +25,13 @@
   <strong>contactNo:</strong>
   <%= @product.contactNo %>
 </p>
+<h2>Roles</h2>
+<ul>
+  <% @product.patients.each do |patient| %>
+    <li><%= patient.role %></li>
+  <% end %>
 
 
-<h2>patients</h2>
-<%= render @product.patients %>
 
 
 <h2>Add a patient:</h2>

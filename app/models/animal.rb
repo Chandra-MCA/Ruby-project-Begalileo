@@ -1,10 +1,6 @@
 class Animal < ActiveRecord::Base
-  validates :name, presence: true,
-                    length: { minimum: 5 }
-  validates :email, presence: true,
-                    length: { minimum: 5 }
-  validates :contact, presence: true,
-                    length: { minimum: 5 }
-  validates :gender, presence: true,
-                    length: { minimum: 5 }
+  has_and_belongs_to_many :roles
+
+  validates :name, :email, :contact, presence: true
+  validates :email, uniqueness: true
 end

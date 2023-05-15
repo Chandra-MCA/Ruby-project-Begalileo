@@ -4,19 +4,26 @@ class ProductsController < ApplicationController
 
 
    def index
-
-  @products = Product.all
-   @products = @products.includes(:patients).where(patients: { role: params[:role] }) if params[:role].present?
-
-
-
-  if params[:search].present?
-    search_term = "%#{params[:search]}%"
-    @productss = Product.where("first_name LIKE ? OR gender LIKE ? OR contactNo LIKE ?", search_term, search_term, search_term)
-  else
-    @productss = Product.all
+     @products = Product.all
+         if params[:search]
+      @products = Product.joins(:patients).where('patients.role LIKE ?', "%#{params[:search]}%")
+    else
+      @products = Product.all
+    end
   end
-end
+
+#   @products = Product.all
+#    @products = @products.includes(:patients).where(patients: { role: params[:role] }) if params[:role].present?
+#
+#
+#
+#   if params[:search].present?
+#     search_term = "%#{params[:search]}%"
+#     @productss = Product.where("first_name LIKE ? OR gender LIKE ? OR contactNo LIKE ?", search_term, search_term, search_term)
+#   else
+#     @productss = Product.all
+#   end
+# end
   #   @products = Product.all
   #
   #   if params[:role].present?
@@ -56,6 +63,7 @@ end
   def create
     @product= Product.new(product_params)
      if @product.save
+       @product.patients << Patient.where(id: params[:product][:patient_ids])
     redirect_to product_path(@product.id)
   else
     render 'new'
@@ -84,6 +92,6 @@ def destroy
 end
    private
    def product_params
-    params.require(:product).permit(:first_name, :last_name,  :gender, :address, :peraddress, :contactNo)
+    params.require(:product).permit(:first_name, :last_name,  :gender, :address, :peraddress, :contactNo,patients_ids: [])
   end
 end

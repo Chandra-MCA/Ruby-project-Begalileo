@@ -1,11 +1,13 @@
 
 <table>
   <tr>
+
     <%= form_tag products_path(@product), method: :get do %>
-      <%= label_tag :role, "Select Role" %>
-      <%= select_tag :role, options_for_select(Patient.select(:role).distinct.order(:role).pluck(:role), params[:role]), include_blank: true %>
-      <%= submit_tag "Filter" %>
-      <% end %>
+      <%= label_tag :search, "Search for:" %>
+      <%= text_field_tag :search, params[:search]%>
+      <%= submit_tag "Search" %>
+    <% end %>
+
 
       </tr>
 
@@ -46,45 +48,4 @@
   <% end %>
 </table>
 <% end %>
-
-<%= submit_tag "Delete Selected Products" %>
-<%= form_tag products_path(@product), method: :get do %>
-  <%= label_tag :search, "Search for:" %>
-  <%= text_field_tag :search, params[:search]%>
-  <%= submit_tag "Search" %>
-<% end %>
-
-<table>
-
-<tr>
-  <th></th>
-  <th>first_name</th>
-  <th>last_name</th>
-  <th>gender</th>
-  <th>address</th>
-  <th>peraddress</th>
-  <th>contactNo</th>
-  <th>role </th>
-  <th colspan="2"></th>
-</tr>
-<% @productss.each do |product| %>
-  <tr>
-    <td><%= check_box_tag "product_ids[]", product.id %></td>
-    <td><%= product.first_name %></td>
-    <td><%= product.last_name %></td>
-    <td><%= product.gender %></td>
-    <td><%= product.address %></td>
-    <td><%= product.peraddress %></td>
-    <td><%= product.contactNo %></td>
-    <% product.patients.each do |patient| %>
-      <td><%= patient.role %></td>
-    <% end %>
-    <td><%= link_to 'show', product_path(product) %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product_path(product),
-            method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-
-</table>
+  <%= submit_tag "Delete Selected Products" %>

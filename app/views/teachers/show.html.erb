@@ -1,0 +1,29 @@
+
+<p>
+<strong>name:</strong>
+<%= @teacher.name %>
+</p>
+
+<p>
+<strong>email:</strong>
+<%= @teacher.email %>
+</p>
+<p>
+<strong>contact:</strong>
+<%= @teacher.contact %>
+</p>
+<p>
+<strong>address:</strong>
+<%= @teacher.address %>
+</p>
+<p>
+<strong>roles:</strong>
+<ul>
+  <% @teacher.students.each do |student| %>
+    <li><%= student.f_role %></li>
+  <% end %>
+</ul>
+</p>
+
+<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
+<%= link_to 'Back', teachers_path %>

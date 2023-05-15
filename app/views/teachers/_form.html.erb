@@ -1,0 +1,41 @@
+<%= form_for @teacher, url: teachers_path do |f| %>
+
+<% if @teacher.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@teacher.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @teacher.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<p>
+  <%= f.label :Name %><br>
+  <%= f.text_field :name %>
+</p>
+
+<p>
+  <%= f.label :Email %><br>
+  <%= f.text_area :email %>
+</p>
+<p>
+  <%= f.label :Contact %><br>
+  <%= f.text_area :contact %>
+</p>
+<p>
+  <%= f.label :Address %><br>
+  <%= f.text_area :address %>
+</p>
+<%= f.label :student_ids, "Select Students" %>
+    <%= f.select :student_ids, options_for_select(@students.map{ |p| [p.f_role, p.id] }), {}, {multiple: true} %>
+
+
+<p>
+  <%= f.submit %>
+</p>
+
+<% end %>

@@ -1,0 +1,5 @@
+<%= form_tag teachers_path, method: :get do %>
+  <%= label_tag :f_role, "Search for:" %>
+  <%= text_field_tag :f_role %>
+  <%= submit_tag "Search" %>
+<% end %>

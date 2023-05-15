@@ -2,11 +2,11 @@
 <%= link_to 'New article', new_animal_path %>
 <table>
   <tr>
-    <%= form_tag animals_path(@animals), method: :get do %>
-      <%= label_tag :search, "Search for:" %>
-      <%= text_field_tag :search, params[:search]%>
+    <%= form_tag search_animals_path, method: 'get' do %>
+      <%= select_tag :role, options_for_select(Role.all.map { |r| [r.name, r.name] }), prompt: "Select a role" %>
       <%= submit_tag "Search" %>
-<% end %>
+    <% end %>
+
       </tr>
 
   <tr>
@@ -26,7 +26,6 @@
       <td><%= animal.Role %></td>
       <td><%= link_to 'Show', animal_path(animal) %></td>
       <td><%= link_to 'Edit', edit_animal_path(animal) %></td>
-    <td><%= link_to "Search Posts", search_animals_path %></td>
       <td><%= link_to 'Destroy', animal_path(animal),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>

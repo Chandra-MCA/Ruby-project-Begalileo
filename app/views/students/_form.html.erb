@@ -1,0 +1,10 @@
+<%= form_for([@teacher, @teacher.students.build]) do |f| %>
+  <p>
+    <%= f.label :f_role %><br>
+    <%= f.text_area :f_role %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+  
+<% end %>

@@ -1,0 +1,51 @@
+<h1>Listing All</h1>
+<table>
+  <tr>
+
+    <%= form_tag(teachers_path, method: 'get') do %>
+  <% if @f_roles.present? %>
+    <%= select_tag :f_role, options_for_select(@f_roles, @selected_role), include_blank: true %>
+    <%= submit_tag 'Filter' %>
+  <% else %>
+    <p></p>
+  <% end %>
+<% end %>
+
+
+      </tr>
+<tr>
+  <%= form_tag(delete_teachers_path(@teacher), method: :delete) do %>
+</tr>
+<%= link_to 'New article', new_teacher_path %>
+
+
+  <tr>
+    <th>Select</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Contact</th>
+    <th>Address</th>
+    <th>role </th>
+    <th colspan="2"></th>
+  </tr>
+  <% @teachers.each do |teacher| %>
+    <tr>
+      <td><%= check_box_tag "teacher_ids[]", teacher.id %></td>
+      <td><%= teacher.name %></td>
+      <td><%= teacher.email %></td>
+      <td><%= teacher.contact %></td>
+      <td><%= teacher.address %></td>
+      <% teacher.students.each do |student| %>
+        <td><%= student.f_role %></td>
+        <% end %>
+      <td><%= link_to 'Show', teacher_path(teacher) %></td>
+     <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
+     <td><%= link_to 'Destroy', teacher_path(teacher),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+  <%= submit_tag "Delete Selected Data" %>
+<% end %>

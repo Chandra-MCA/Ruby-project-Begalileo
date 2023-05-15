@@ -40,6 +40,10 @@
     <%= f.text_field :contactNo %>
   </p>
 
+  <%= f.label :roles %>
+  <%= f.collection_select :patient_ids, Patient.all, :id, :role, {}, { multiple: true } %>
+
+
   <p>
       <%= f.submit %>
     </p>
